@@ -1,4 +1,4 @@
-package rish.crearo.onlinesql.pagerfragments;
+package rish.crearo.onlinesql.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,17 +8,17 @@ import android.view.ViewGroup;
 
 import rish.crearo.onlinesql.R;
 
-public class FragPagerOne extends Fragment {
+public class FragmentSubPosts extends Fragment {
 
 
-    public FragPagerOne() {
+    public FragmentSubPosts() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_frag_pager_one,
+        View rootView = inflater.inflate(R.layout.fragment_subscribed_posts,
                 container, false);
 
         return rootView;

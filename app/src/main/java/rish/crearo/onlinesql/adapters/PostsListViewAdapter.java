@@ -11,16 +11,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import rish.crearo.onlinesql.dbhelpers.Posts;
 import rish.crearo.onlinesql.R;
+import rish.crearo.onlinesql.dbhelpers.Posts;
 
-/**
- * Created by rish on 3/5/15.
- */
-public class CustomListViewAdapter extends ArrayAdapter<Posts> {
+public class PostsListViewAdapter extends ArrayAdapter<Posts> {
 
-    public CustomListViewAdapter(Context context, ArrayList<Posts> notistructs) {
-        super(context, R.layout.listview_layout, notistructs);
+    public PostsListViewAdapter(Context context, ArrayList<Posts> notistructs) {
+        super(context, R.layout.element_post, notistructs);
     }
 
     private static class ViewHolder {
@@ -30,7 +27,6 @@ public class CustomListViewAdapter extends ArrayAdapter<Posts> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Get the data item for this position
 
         Posts notistruct = getItem(position);
         System.out.println("no - " + notistruct.ns_title);
@@ -41,7 +37,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Posts> {
         if (convertView == null) {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.listview_layout, null);
+            convertView = inflater.inflate(R.layout.element_post, null);
             viewHolder.h_title = (TextView) convertView.findViewById(R.id.listelement_title);
             viewHolder.h_content = (TextView) convertView.findViewById(R.id.listelement_content);
             viewHolder.h_date = (TextView) convertView.findViewById(R.id.listelement_date);
@@ -64,7 +60,6 @@ public class CustomListViewAdapter extends ArrayAdapter<Posts> {
             viewHolder.h_priority.setText(notistruct.ns_prioritylevel);
             viewHolder.h_location.setText(notistruct.ns_location);
             viewHolder.h_date.setText(notistruct.ns_duedate);
-//            System.out.println("priority level : " + notistruct.ns_prioritylevel);
             switch (notistruct.ns_prioritylevel) {
                 case "1":
                     viewHolder.h_priority.setBackgroundColor(Color.parseColor("#CDDC39"));
@@ -75,15 +70,12 @@ public class CustomListViewAdapter extends ArrayAdapter<Posts> {
                 case "3":
                     viewHolder.h_priority.setBackgroundColor(Color.parseColor("#FF5722"));
                     break;
-
                 default:
                     viewHolder.h_priority.setBackgroundColor(Color.parseColor("#CDDC39"));
             }
         }
         return convertView;
     }
-
-
 }
 
 
@@ -141,12 +133,12 @@ public class CustomListViewAdapter extends ArrayAdapter<Posts> {
 //        View rowView = convertView;
 //        Holder holder = null;
 //        if (convertView == null) {
-//            convertView = View.inflate(context, R.layout.listview_layout, null);
+//            convertView = View.inflate(context, R.layout.element_post, null);
 //            holder = new Holder(convertView);
 //        }
 ////        Holder holder = (Holder) convertView.getTag();
 //
-//        rowView = inflater.inflate(R.layout.listview_layout, null);
+//        rowView = inflater.inflate(R.layout.element_post, null);
 //
 //        holder.h_content.setText(notistruct_list.get(position).ns_content);
 //        holder.h_title.setText(notistruct_list.get(position).ns_title);

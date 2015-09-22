@@ -11,14 +11,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
 
-import rish.crearo.onlinesql.pagerfragments.FragPagerFour;
-import rish.crearo.onlinesql.pagerfragments.FragPagerOne;
-import rish.crearo.onlinesql.pagerfragments.FragPagerThree;
-import rish.crearo.onlinesql.pagerfragments.FragPagerTwo;
+import rish.crearo.onlinesql.fragments.FragmentBroadcast;
+import rish.crearo.onlinesql.fragments.FragmentSubPosts;
+import rish.crearo.onlinesql.fragments.FragmentUser;
+import rish.crearo.onlinesql.fragments.FragmentAllPosts;
 
 
 public class MainTabsActivity extends ActionBarActivity {
@@ -95,15 +94,15 @@ public class MainTabsActivity extends ActionBarActivity {
 
             switch (position) {
                 case 0:
-                    return new FragPagerOne();
+                    return new FragmentSubPosts();
                 case 1:
-                    return new FragPagerTwo();
+                    return new FragmentAllPosts();
                 case 2:
-                    return new FragPagerThree();
+                    return new FragmentUser();
                 case 3:
-                    return new FragPagerFour();
+                    return new FragmentBroadcast();
                 default:
-                    return new FragPagerOne();
+                    return new FragmentSubPosts();
             }
         }
     }

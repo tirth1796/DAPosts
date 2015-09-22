@@ -1,4 +1,4 @@
-package rish.crearo.onlinesql.pagerfragments;
+package rish.crearo.onlinesql.fragments;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.widget.Button;
 import rish.crearo.onlinesql.R;
 import rish.crearo.onlinesql.dbhelpers.Posts;
 
-public class FragPagerFour extends Fragment implements Posts.VolleyCallback {
+public class FragmentBroadcast extends Fragment implements Posts.VolleyCallback {
 
     Button submit;
     Posts.VolleyCallback volleyCallback;
@@ -22,7 +22,7 @@ public class FragPagerFour extends Fragment implements Posts.VolleyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_frag_pager_four, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_broadcast, container, false);
 
         volleyCallback = this;
         progressDialog = new ProgressDialog(getActivity());

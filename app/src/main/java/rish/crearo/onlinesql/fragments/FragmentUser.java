@@ -1,4 +1,4 @@
-package rish.crearo.onlinesql.pagerfragments;
+package rish.crearo.onlinesql.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,7 +17,7 @@ import rish.crearo.onlinesql.dbhelpers.Group;
 import rish.crearo.onlinesql.dbhelpers.Groups;
 import rish.crearo.onlinesql.dbhelpers.UserPrefs;
 
-public class FragPagerThree extends Fragment {
+public class FragmentUser extends Fragment {
 
     LinearLayout linearLayout_groupsPrefs;
     EditText webmailID;
@@ -25,7 +25,7 @@ public class FragPagerThree extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_frag_pager_three, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_user, container, false);
 
         linearLayout_groupsPrefs = (LinearLayout) rootView.findViewById(R.id.ll_groups_prefs);
         webmailID = (EditText) rootView.findViewById(R.id.webmail_id);
