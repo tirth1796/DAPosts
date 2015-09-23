@@ -1,5 +1,7 @@
 package rish.crearo.onlinesql;
 
+import android.graphics.Color;
+import android.support.annotation.ColorRes;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,7 +20,6 @@ import rish.crearo.onlinesql.dbhelpers.UserPrefs;
 
 public class Settings extends ActionBarActivity {
 
-
     LinearLayout linearLayout_groupsPrefs;
     EditText webmailID;
 
@@ -31,27 +32,27 @@ public class Settings extends ActionBarActivity {
 
         webmailID.setText("" + UserPrefs.getID(getApplicationContext()));
         addGroups();
-
     }
 
     private void addGroups() {
-//        ArrayList<String> prefGroups = UserPrefs.getGroupsPrefs(getActivity());
+        ArrayList<Group> prefGroups = UserPrefs.getGroupsPrefs(getApplicationContext());
         for (Group group : Groups.getGroupNames(getApplicationContext())) {
             final CheckBox checkBox = new CheckBox(getApplicationContext());
             checkBox.setText(group.name);
-//            if (isWordInList(groupName, prefGroups))
-//                checkBox.setChecked(true);
-//            else
-//                checkBox.setChecked(false);
-
+            checkBox.setTextColor(getResources().getColor(R.color.textcolor_sec));
+            if (prefGroups != null)
+                if (isWordInList(group.name, prefGroups))
+                    checkBox.setChecked(true);
+                else
+                    checkBox.setChecked(false);
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    ArrayList<String> queue = new ArrayList<String>();
+                    ArrayList<Group> queue = new ArrayList<>();
                     for (int i = 0; i < linearLayout_groupsPrefs.getChildCount(); i++) {
                         CheckBox checkBox1 = (CheckBox) linearLayout_groupsPrefs.getChildAt(i);
                         if (checkBox1.isChecked())
-                            queue.add("" + checkBox1.getText());
+                            queue.add(new Group(checkBox1.getText().toString()));
                     }
                     UserPrefs.setGroups(getApplicationContext(), queue);
                 }
@@ -61,9 +62,9 @@ public class Settings extends ActionBarActivity {
         }
     }
 
-    public boolean isWordInList(String string, ArrayList<String> strings) {
-        for (String s : strings) {
-            if (string.equals(s)) {
+    public boolean isWordInList(String string, ArrayList<Group> groups) {
+        for (Group g : groups) {
+            if (string.equals(g.name)) {
                 return true;
             }
         }

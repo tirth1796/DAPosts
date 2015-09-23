@@ -28,8 +28,7 @@ public class FragmentAllPosts extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_all_posts,
-                container, false);
+        View rootView = inflater.inflate(R.layout.fragment_all_posts, container, false);
 
         listview = (ListView) rootView.findViewById(R.id.fragtwo_listView);
         adapter = new PostsListViewAdapter(getActivity().getApplicationContext(), postslist);

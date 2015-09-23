@@ -1,7 +1,12 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context="rish.crearo.onlinesql.FragPagerThree">
+    android:layout_height="match_parent"
+    tools:context="rish.crearo.onlinesql.fragments.FragmentSubPosts">
 
-</ScrollView>
+
+    <ListView
+        android:id="@+id/subposts_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>

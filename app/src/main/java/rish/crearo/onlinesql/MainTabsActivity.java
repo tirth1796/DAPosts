@@ -39,7 +39,7 @@ public class MainTabsActivity extends ActionBarActivity {
 
         ViewPager pager = (ViewPager) findViewById(R.id.tabs_pager);
         pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
-        pager.setOffscreenPageLimit(0);
+        pager.setOffscreenPageLimit(1);
 
         // Bind the tabs to the ViewPager
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs_tabs);

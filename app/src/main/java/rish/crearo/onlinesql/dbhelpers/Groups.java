@@ -24,6 +24,7 @@ import rish.crearo.onlinesql.helpers.Constants;
 public class Groups {
 
     public static ArrayList<Group> getGroupNames(Context context) {
+        System.out.println("Context null = " + context);
         SharedPreferences prefs = context.getSharedPreferences(Constants.MAIN_PREF_KEY, Context.MODE_PRIVATE);
         ArrayList<Group> storedgroups = new ArrayList<>();
         String jsonFavorites = prefs.getString(Constants.GROUP_PREF_KEY, null);

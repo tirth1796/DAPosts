@@ -14,6 +14,11 @@
     <color name="mat_green_pressed">#778BC34A</color>
 
 
+    <color name="priority_0">#CDDC39</color>
+    <color name="priority_1">#FFC107</color>
+    <color name="priority_2">#FF5722</color>
+
+
     <color name="White">#FFFFFF</color>
     <color name="Ivory">#FFFFF0</color>
     <color name="LightYellow">#FFFFE0</color>

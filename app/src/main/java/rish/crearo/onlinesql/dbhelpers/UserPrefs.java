@@ -28,7 +28,7 @@ public class UserPrefs {
         prefid.edit().putString(Constants.ID_PREF_KEY, id).commit();
     }
 
-    public static void setGroups(Context context, ArrayList<String> groups) {
+    public static void setGroups(Context context, ArrayList<Group> groups) {
         SharedPreferences prefs = context.getSharedPreferences(Constants.USER_PREF_KEY, Context.MODE_PRIVATE);
 
         Gson gson = new Gson();
@@ -42,22 +42,22 @@ public class UserPrefs {
         return prefs.getString(Constants.ID_PREF_KEY, null);
     }
 
-    public static ArrayList<String> getGroupsPrefs(Context context) {
-        ArrayList<String> queue = new ArrayList<>();
+    public static ArrayList<Group> getGroupsPrefs(Context context) {
+        ArrayList<Group> queue = new ArrayList<>();
         SharedPreferences prefs = context.getSharedPreferences(Constants.USER_PREF_KEY, Context.MODE_PRIVATE);
         String jsonFavorites = prefs.getString(Constants.GROUP_PREF_KEY, null);
+        System.out.println("jsonfavs = " + jsonFavorites);
         try {
             JSONArray jsonArray = new JSONArray(jsonFavorites);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                queue.add(jsonObject.getString("groups"));
+                queue.add(new Group(jsonObject.getString("name")));
             }
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return queue;
     }
-
 
     public static void clearActionPrefs(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(Constants.USER_PREF_KEY, Context.MODE_PRIVATE);

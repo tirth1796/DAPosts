@@ -1,11 +1,13 @@
 package rish.crearo.onlinesql;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.format.Time;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,13 +33,12 @@ public class NewBroadcast extends ActionBarActivity implements Posts.VolleyCallb
     Posts.VolleyCallback volleyCallback;
     ProgressDialog progressDialog;
     Snackbar snackbar;
-    EditText title;
-    EditText content;
-    TextView time;
-    TextView date;
+    EditText title, content;
+    TextView time, date, addLocation, addTimeDate, prioritydisplay;
     EditText location;
     String EVENT_DATE;
     String EVENT_TIME;
+    Spinner prioritySpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,17 +53,28 @@ public class NewBroadcast extends ActionBarActivity implements Posts.VolleyCallb
         time = (TextView) findViewById(R.id.post_time_picker);
         date = (TextView) findViewById(R.id.post_date_picker);
         submit = (Button) findViewById(R.id.post_submit);
+        addLocation = (TextView) findViewById(R.id.add_location);
+        addTimeDate = (TextView) findViewById(R.id.add_timedate);
+        prioritydisplay = (TextView) findViewById(R.id.post_priority);
 
-        List<String> spinnerArray = new ArrayList<String>();
-        spinnerArray.add("Just Saying");
-        spinnerArray.add("Reminder");
-        spinnerArray.add("Very Important");
+        setSpinner();
+        setInvisible(time, date, location);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, spinnerArray);
+        addLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setVisible(location);
+                setInvisible(addLocation);
+            }
+        });
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        final Spinner _spinner = (Spinner) findViewById(R.id.post_spinner);
-        _spinner.setAdapter(adapter);
+        addTimeDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setVisible(time, date);
+                setInvisible(addTimeDate);
+            }
+        });
 
         time.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +90,6 @@ public class NewBroadcast extends ActionBarActivity implements Posts.VolleyCallb
             }
         });
 
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,10 +99,41 @@ public class NewBroadcast extends ActionBarActivity implements Posts.VolleyCallb
                 String _content = content.getText().toString();
                 String _location = location.getText().toString();
                 String _currentdatetime = Constants.getCurrentDateTime();
-                String _priority = "" + (1 + _spinner.getSelectedItemPosition());
+                String _priority = "" + (1 + prioritySpinner.getSelectedItemPosition());
                 String _eventdate = EVENT_TIME + " " + EVENT_DATE;
                 String _user = UserPrefs.getID(getApplicationContext());
                 Posts.broadcastPost(new Posts(_title, _content, _priority, _user, "for", _currentdatetime, _eventdate, _location, "1"), volleyCallback);
+            }
+        });
+    }
+
+    private void setSpinner() {
+        List<String> spinnerArray = new ArrayList<String>();
+        spinnerArray.add("Just Saying");
+        spinnerArray.add("Reminder");
+        spinnerArray.add("Very Important");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, spinnerArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        prioritySpinner = (Spinner) findViewById(R.id.post_spinner);
+        prioritySpinner.setAdapter(adapter);
+
+        prioritySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0)
+                    prioritydisplay.setBackgroundResource(R.color.priority_0);
+                if (position == 1)
+                    prioritydisplay.setBackgroundResource(R.color.priority_1);
+                if (position == 2)
+                    prioritydisplay.setBackgroundResource(R.color.priority_2);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                prioritydisplay.setBackgroundResource(R.color.priority_0);
+                prioritySpinner.setSelection(0);
             }
         });
     }
@@ -147,9 +189,21 @@ public class NewBroadcast extends ActionBarActivity implements Posts.VolleyCallb
                 date.setText("Tomorrow");
             } else if (diffInDays == 2) {
                 date.setText("Day After Tomorrow");
+            } else {
+                date.setText((DAY) + " " + Constants.getMonthFromNumber(MONTH));
             }
         } catch (Exception e) {
             date.setText((DAY) + " " + Constants.getMonthFromNumber(MONTH));
         }
+    }
+
+    private void setInvisible(View... view) {
+        for (View v : view)
+            v.setVisibility(View.GONE);
+    }
+
+    private void setVisible(View... view) {
+        for (View v : view)
+            v.setVisibility(View.VISIBLE);
     }
 }

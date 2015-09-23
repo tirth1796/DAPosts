@@ -95,16 +95,16 @@ public class PostsListViewAdapter extends ArrayAdapter<Posts> {
 
             switch (notistruct.ns_prioritylevel) {
                 case "1":
-                    viewHolder.h_priority.setBackgroundColor(Color.parseColor("#CDDC39"));
+                    viewHolder.h_priority.setBackgroundResource(R.color.priority_0);
                     break;
                 case "2":
-                    viewHolder.h_priority.setBackgroundColor(Color.parseColor("#FFC107"));
+                    viewHolder.h_priority.setBackgroundResource(R.color.priority_1);
                     break;
                 case "3":
-                    viewHolder.h_priority.setBackgroundColor(Color.parseColor("#FF5722"));
+                    viewHolder.h_priority.setBackgroundResource(R.color.priority_2);
                     break;
                 default:
-                    viewHolder.h_priority.setBackgroundColor(Color.parseColor("#CDDC39"));
+                    viewHolder.h_priority.setBackgroundResource(R.color.priority_0);
             }
         }
         return convertView;
