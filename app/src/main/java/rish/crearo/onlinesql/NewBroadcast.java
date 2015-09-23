@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 import rish.crearo.onlinesql.dbhelpers.Posts;
+import rish.crearo.onlinesql.dbhelpers.UserPrefs;
 import rish.crearo.onlinesql.helpers.Constants;
 import rish.crearo.onlinesql.helpers.DatePickerDialog_;
 import rish.crearo.onlinesql.helpers.TimePickerDialog_;
@@ -87,9 +88,10 @@ public class NewBroadcast extends ActionBarActivity implements Posts.VolleyCallb
                 String _content = content.getText().toString();
                 String _location = location.getText().toString();
                 String _currentdatetime = Constants.getCurrentDateTime();
-                String _priority = "" + _spinner.getSelectedItemPosition();
+                String _priority = "" + (1 + _spinner.getSelectedItemPosition());
                 String _eventdate = EVENT_TIME + " " + EVENT_DATE;
-                Posts.broadcastPost(new Posts(_title, _content, _priority, "by", "for", _currentdatetime, _eventdate, _location, "1"), volleyCallback);
+                String _user = UserPrefs.getID(getApplicationContext());
+                Posts.broadcastPost(new Posts(_title, _content, _priority, _user, "for", _currentdatetime, _eventdate, _location, "1"), volleyCallback);
             }
         });
     }

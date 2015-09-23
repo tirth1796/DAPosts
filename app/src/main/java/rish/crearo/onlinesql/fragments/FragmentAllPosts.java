@@ -21,7 +21,8 @@ public class FragmentAllPosts extends Fragment {
     private ArrayList<Posts> postslist;
 
     public FragmentAllPosts() {
-        postslist = (ArrayList<Posts>) Posts.listAll(Posts.class);
+//        postslist = (ArrayList<Posts>) Posts.listAll(Posts.class);
+        postslist = (ArrayList<Posts>) Posts.findWithQuery(Posts.class, "Select * from Posts order by ? DESC;", "ns_duedate");
     }
 
     @Override

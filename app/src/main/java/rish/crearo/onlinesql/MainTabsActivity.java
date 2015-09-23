@@ -18,6 +18,7 @@ import android.view.View;
 import com.astuetz.PagerSlidingTabStrip;
 
 import rish.crearo.onlinesql.fragments.FragmentAllPosts;
+import rish.crearo.onlinesql.fragments.FragmentCalendar;
 import rish.crearo.onlinesql.fragments.FragmentSubPosts;
 
 
@@ -83,7 +84,7 @@ public class MainTabsActivity extends ActionBarActivity {
 
     public class MyPagerAdapter extends FragmentPagerAdapter {
 
-        private final String[] TITLES = {"Latest", "All"};
+        private final String[] TITLES = {"Latest", "All", "Calendar"};
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -107,6 +108,8 @@ public class MainTabsActivity extends ActionBarActivity {
                     return new FragmentSubPosts();
                 case 1:
                     return new FragmentAllPosts();
+                case 2:
+                    return new FragmentCalendar();
                 default:
                     return new FragmentSubPosts();
             }

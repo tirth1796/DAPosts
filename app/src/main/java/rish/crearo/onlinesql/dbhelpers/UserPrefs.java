@@ -2,7 +2,12 @@ package rish.crearo.onlinesql.dbhelpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -64,5 +69,32 @@ public class UserPrefs {
 
         edit.putString(Constants.USER_PREF_KEY, json);
         edit.commit();
+    }
+
+    //verifies user through server
+    public static void verifyUser(String username, String pwd, final UserAuthenticationListener listener) {
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Constants.BASE_URL_VERIFY + "/" + username + "/" + pwd, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println("Printing the response => ");
+                Log.d("response", response.toString());
+                if (response.toString().contains("true"))
+                    listener.AuthenticationResult(true);
+                else
+                    listener.AuthenticationResult(false);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("Error message man " + error.getMessage());
+                VolleyLog.d("error man", "Error: " + error.getMessage());
+                listener.AuthenticationResult(false);
+            }
+        });
+        AppController.getInstance().addToRequestQueue(objectRequest);
+    }
+
+    public interface UserAuthenticationListener {
+        void AuthenticationResult(boolean auth);
     }
 }

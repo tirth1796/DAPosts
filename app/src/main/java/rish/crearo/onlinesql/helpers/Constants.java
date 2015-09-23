@@ -1,6 +1,7 @@
 package rish.crearo.onlinesql.helpers;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -11,9 +12,10 @@ import java.util.Date;
 public class Constants {
 
     public static String BASE_URL = "http://192.168.150.1:8080/";
-    public static String BASE_URL_GROUPS = "http://192.168.150.1:8080/groups";
-    public static String BASE_URL_POSTS = "http://192.168.150.1:8080/posts";
-    public static String BASE_URL_POST = "http://192.168.150.1:8080/post";
+    public static String BASE_URL_GROUPS = BASE_URL + "groups";
+    public static String BASE_URL_POSTS = BASE_URL + "posts";
+    public static String BASE_URL_POST = BASE_URL + "post";
+    public static String BASE_URL_VERIFY = BASE_URL + "verify";
 
     public static final String TAG_GROUPS = "groups";
     public static final String TAG_DBNAME = "posts";
@@ -63,8 +65,17 @@ public class Constants {
         }
     }
 
-    public static String getCurrentDate() {
-        return new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+    public static Date getCurrentDate() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Calendar calendar = Calendar.getInstance();
+        String str1 = calendar.get(Calendar.DAY_OF_MONTH) + "-" + (1 + calendar.get(Calendar.MONTH)) + "-" + calendar.get(Calendar.YEAR);
+        Date todaysdate = null;
+        try {
+            todaysdate = formatter.parse(str1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return todaysdate;
     }
 
     public static String getCurrentTime() {
