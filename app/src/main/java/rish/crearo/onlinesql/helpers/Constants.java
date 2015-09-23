@@ -13,6 +13,7 @@ public class Constants {
     public static String BASE_URL = "http://192.168.150.1:8080/";
     public static String BASE_URL_GROUPS = "http://192.168.150.1:8080/groups";
     public static String BASE_URL_POSTS = "http://192.168.150.1:8080/posts";
+    public static String BASE_URL_POST = "http://192.168.150.1:8080/post";
 
     public static final String TAG_GROUPS = "groups";
     public static final String TAG_DBNAME = "posts";

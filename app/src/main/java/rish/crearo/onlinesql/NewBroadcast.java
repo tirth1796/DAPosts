@@ -43,7 +43,7 @@ public class NewBroadcast extends ActionBarActivity implements Posts.VolleyCallb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_broadcast);
         volleyCallback = this;
-        progressDialog = new ProgressDialog(getApplicationContext());
+        progressDialog = new ProgressDialog(NewBroadcast.this);
 
         title = (EditText) findViewById(R.id.post_title);
         location = (EditText) findViewById(R.id.post_location);

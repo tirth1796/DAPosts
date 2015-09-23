@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import rish.crearo.onlinesql.helpers.Constants;
@@ -68,7 +69,7 @@ public class Posts extends SugarRecord<Posts> {
     }
 
     public static void refreshPosts(final VolleyCallback callback) {
-        JsonObjectRequest objectRequest = new JsonObjectRequest(Constants.BASE_URL_POSTS, new Response.Listener<JSONObject>() {
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Constants.BASE_URL_POSTS + "/" + getMostRecentPostID(), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println("Printing the response => ");
@@ -126,7 +127,7 @@ public class Posts extends SugarRecord<Posts> {
         params.put("p_location", post.ns_location);
         params.put("p_posted_by", post.ns_from);
         params.put("p_posted_for", post.ns_for);
-        JsonObjectRequest req = new JsonObjectRequest(Constants.BASE_URL_POSTS, new JSONObject(params),
+        JsonObjectRequest req = new JsonObjectRequest(Constants.BASE_URL_POST, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -152,6 +153,16 @@ public class Posts extends SugarRecord<Posts> {
 
         // add the request object to the queue to be executed
         AppController.getInstance().addToRequestQueue(req);
+    }
+
+    public static int getMostRecentPostID() {
+        int id = 0;
+        List<Posts> posts = Posts.listAll(Posts.class);
+        for (Posts post : posts) {
+            if (post.ns_id > id)
+                id = post.ns_id;
+        }
+        return id;
     }
 
     public interface VolleyCallback {

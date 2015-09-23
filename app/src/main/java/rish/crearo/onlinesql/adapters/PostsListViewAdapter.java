@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import rish.crearo.onlinesql.R;
 import rish.crearo.onlinesql.dbhelpers.Posts;
+import rish.crearo.onlinesql.helpers.TheFont;
 
 public class PostsListViewAdapter extends ArrayAdapter<Posts> {
 
@@ -21,7 +22,7 @@ public class PostsListViewAdapter extends ArrayAdapter<Posts> {
     }
 
     private static class ViewHolder {
-        TextView h_title, h_content, h_date, h_location, h_priority;
+        TextView h_title, h_content, h_date, h_location, h_priority, h_from;
     }
 
 
@@ -31,8 +32,8 @@ public class PostsListViewAdapter extends ArrayAdapter<Posts> {
         Posts notistruct = getItem(position);
         System.out.println("no - " + notistruct.ns_title);
         ViewHolder viewHolder;
-//        Typeface type = Typeface.createFromAsset(getContext().getAssets(), "fonts/SF_Arch_Rival.ttf");
-        Typeface type = Typeface.createFromAsset(getContext().getAssets(), "fonts/animeace2_reg.otf");
+        Typeface type = TheFont.getPrimaryTypeface(getContext());
+        Typeface typeBold = TheFont.getPrimaryTypefaceBold(getContext());
 
         if (convertView == null) {
             viewHolder = new ViewHolder();
@@ -43,23 +44,25 @@ public class PostsListViewAdapter extends ArrayAdapter<Posts> {
             viewHolder.h_date = (TextView) convertView.findViewById(R.id.listelement_date);
             viewHolder.h_location = (TextView) convertView.findViewById(R.id.listelement_location);
             viewHolder.h_priority = (TextView) convertView.findViewById(R.id.listelement_priority);
+            viewHolder.h_from = (TextView) convertView.findViewById(R.id.listelement_from);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
         if (viewHolder != null) {
+            viewHolder.h_title.setTypeface(typeBold);
             viewHolder.h_content.setTypeface(type);
-            viewHolder.h_title.setTypeface(type);
             viewHolder.h_priority.setTypeface(type);
             viewHolder.h_location.setTypeface(type);
             viewHolder.h_date.setTypeface(type);
-
+            viewHolder.h_from.setTypeface(type);
             viewHolder.h_content.setText(notistruct.ns_content);
             viewHolder.h_title.setText(notistruct.ns_title);
             viewHolder.h_priority.setText(notistruct.ns_prioritylevel);
             viewHolder.h_location.setText(notistruct.ns_location);
             viewHolder.h_date.setText(notistruct.ns_duedate);
+            viewHolder.h_from.setText(notistruct.ns_from);
             switch (notistruct.ns_prioritylevel) {
                 case "1":
                     viewHolder.h_priority.setBackgroundColor(Color.parseColor("#CDDC39"));

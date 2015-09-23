@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="background">#0277BD</color>
-    <color name="textcolor_pri">#FFFFFF</color>
-    <color name="textcolor_sec">#F0F0FF</color>
+    <color name="textcolor_pri">#000000</color>
+    <color name="textcolor_sec">#212121</color>
 
     <color name="background_purple">#2C3997</color>
     <color name="background_lightblue">#0F6CAF</color>
