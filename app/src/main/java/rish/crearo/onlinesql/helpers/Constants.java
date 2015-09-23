@@ -1,5 +1,10 @@
 package rish.crearo.onlinesql.helpers;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by rish on 22/9/15.
  */
@@ -25,4 +30,49 @@ public class Constants {
     public static final String GROUP_PREF_KEY = "group_pref_key";
     public static final String ID_PREF_KEY = "id_pref_key";
     public static final String MAIN_PREF_KEY = "id_pref_key";
+
+    public static String getMonthFromNumber(int month) {
+        switch (month) {
+            case 0:
+                return "Jan";
+            case 1:
+                return "Feb";
+            case 2:
+                return "March";
+            case 3:
+                return "April";
+            case 4:
+                return "May";
+            case 5:
+                return "June";
+            case 6:
+                return "July";
+            case 7:
+                return "Aug";
+            case 8:
+                return "Sept";
+            case 9:
+                return "Oct";
+            case 10:
+                return "Nov";
+            case 11:
+                return "Dec";
+            default:
+                return "You have a sad phone man";
+        }
+    }
+
+    public static String getCurrentDate() {
+        return new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+    }
+
+    public static String getCurrentTime() {
+        return new SimpleDateFormat("hh:mm:ss").format(new Date());
+    }
+
+    public static String getCurrentDateTime() {
+        return new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(new Date());
+    }
+
+
 }

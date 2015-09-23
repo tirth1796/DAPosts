@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="background">#0277BD</color>
+    <color name="textcolor_pri">#FFFFFF</color>
+    <color name="textcolor_sec">#F0F0FF</color>
+
+    <color name="background_purple">#2C3997</color>
+    <color name="background_lightblue">#0F6CAF</color>
+    <color name="background_blue">#0277BD</color>
+    <color name="background_black">#212121</color>
+
+    <color name="mat_red">#F44336</color>
+    <color name="mat_green">#8BC34A</color>
+    <color name="mat_green_pressed">#778BC34A</color>
+
+
     <color name="White">#FFFFFF</color>
     <color name="Ivory">#FFFFF0</color>
     <color name="LightYellow">#FFFFE0</color>

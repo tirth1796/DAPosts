@@ -1,10 +1,9 @@
-package rish.crearo.onlinesql.fragments;
+package rish.crearo.onlinesql;
 
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -12,34 +11,33 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
-import rish.crearo.onlinesql.R;
 import rish.crearo.onlinesql.dbhelpers.Group;
 import rish.crearo.onlinesql.dbhelpers.Groups;
 import rish.crearo.onlinesql.dbhelpers.UserPrefs;
 
-public class FragmentUser extends Fragment {
+
+public class Settings extends ActionBarActivity {
+
 
     LinearLayout linearLayout_groupsPrefs;
     EditText webmailID;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+        linearLayout_groupsPrefs = (LinearLayout) findViewById(R.id.ll_groups_prefs);
+        webmailID = (EditText) findViewById(R.id.webmail_id);
 
-        View rootView = inflater.inflate(R.layout.fragment_user, container, false);
-
-        linearLayout_groupsPrefs = (LinearLayout) rootView.findViewById(R.id.ll_groups_prefs);
-        webmailID = (EditText) rootView.findViewById(R.id.webmail_id);
-
-        webmailID.setText("" + UserPrefs.getID(getActivity()));
+        webmailID.setText("" + UserPrefs.getID(getApplicationContext()));
         addGroups();
 
-        return rootView;
     }
 
     private void addGroups() {
 //        ArrayList<String> prefGroups = UserPrefs.getGroupsPrefs(getActivity());
-        for (Group group : Groups.getGroupNames(getActivity())) {
-            final CheckBox checkBox = new CheckBox(getActivity());
+        for (Group group : Groups.getGroupNames(getApplicationContext())) {
+            final CheckBox checkBox = new CheckBox(getApplicationContext());
             checkBox.setText(group.name);
 //            if (isWordInList(groupName, prefGroups))
 //                checkBox.setChecked(true);
@@ -55,7 +53,7 @@ public class FragmentUser extends Fragment {
                         if (checkBox1.isChecked())
                             queue.add("" + checkBox1.getText());
                     }
-                    UserPrefs.setGroups(getActivity(), queue);
+                    UserPrefs.setGroups(getApplicationContext(), queue);
                 }
             });
             linearLayout_groupsPrefs.addView(checkBox);

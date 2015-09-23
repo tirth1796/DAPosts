@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".Home">
+
+    <TimePicker
+        android:id="@+id/dialog_timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/background_blue"
+        android:headerBackground="@color/background_blue"
+        android:numbersBackgroundColor="@color/textcolor_pri"
+        android:numbersSelectorColor="@color/background_blue"
+        android:numbersTextColor="@color/textcolor_pri" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_blue"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/dialog_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="5"
+            android:gravity="right"
+            android:text="Cancel"
+            android:textColor="@color/textcolor_sec"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/dialog_okay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="OK"
+            android:textColor="@color/textcolor_pri"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+</LinearLayout>
