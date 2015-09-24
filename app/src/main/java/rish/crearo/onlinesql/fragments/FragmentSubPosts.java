@@ -48,7 +48,6 @@ public class FragmentSubPosts extends Fragment {
         postslist = (ArrayList<Posts>) Posts.listAll(Posts.class);
         adapter.notifyDataSetChanged();
 
-
         return rootView;
     }
 

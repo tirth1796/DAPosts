@@ -33,8 +33,6 @@ public class FragmentAllPosts extends Fragment {
         listview = (ListView) rootView.findViewById(R.id.fragtwo_listView);
         adapter = new PostsListViewAdapter(getActivity().getApplicationContext(), postslist);
         listview.setAdapter(adapter);
-
-        postslist = (ArrayList<Posts>) Posts.listAll(Posts.class);
         adapter.notifyDataSetChanged();
 
         return rootView;

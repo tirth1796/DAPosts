@@ -31,7 +31,6 @@ public class Settings extends ActionBarActivity {
         webmailID = (EditText) findViewById(R.id.webmail_id);
 
         webmailID.setText("" + UserPrefs.getID(getApplicationContext()));
-        addGroups();
     }
 
     private void addGroups() {
